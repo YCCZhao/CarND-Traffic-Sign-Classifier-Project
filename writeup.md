@@ -113,8 +113,8 @@ drop_out = 0.5
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. 
 The results on the training, validation and test sets of my final model were:
 * training set accuracy of 99.8%
-* validation set accuracy of 97%
-* test set accuracy of 95.2%
+* validation set accuracy of 97.3%
+* test set accuracy of 95.5%
 
 VGGNet was chosen because it was relatively easy to implement while providing accurate predition. It showed a high accuracy in the 2014 
 Large Scale Visual Recognition Challenge. Therefore I believed that it would also work very well on the traffic sign application. 
@@ -190,28 +190,58 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Right-of-way at the next intersection | Stop sign   									| 
-| Road work | U-turn 										|
-| Speed limit (60km/h) | Yield											|
-| Stop | Bumpy Road					 				|
-| Yield | Slippery Road      							|
+| Right-of-way at the next intersection | Right-of-way at the next intersection | 
+| Road work | Road work |
+| Speed limit (60km/h) | Speed limit (60km/h) |
+| Stop | Stop |
+| Yield | Yield |
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%. 
 
 ### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. 
 Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| 1.0|Right-of-way at the next intersection| 
+| .00|Beware of ice/snow|
+| .00|Pedestrians|
+| .00|General caution|
+| .00|Priority road|
 
-For the second image ... 
+For the second image 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+|1.0|Road work|
+|.00|Bumpy road|
+|.00|Beware of ice/snow|
+|.00|Bicycles crossing|
+|.00|General caution|
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+|.90|Speed limit (60km/h)|
+|.10|Speed limit (80km/h)| 
+|.00|Speed limit (20km/h)|
+|.00|End of speed limit (80km/h)|
+|.00|ehicles over 3.5 metric tons prohibited|
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+|1.0|Stop|
+|.00|Turn left ahead|
+|.00|No entry|
+|.00|Roundabout mandatory|
+|.00|Turn right ahead|
+
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+|1.0|Yield|
+|.00|Speed limit (80km/h)|
+|.00|Speed limit (50km/h)|
+|.00|No vehicles|
+|.00|Go straight or right|
