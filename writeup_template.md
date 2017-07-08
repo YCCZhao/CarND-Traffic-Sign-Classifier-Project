@@ -69,8 +69,11 @@ Belows are them sample images after normalization.
 
 #### 2. Final model architecture description
 
-Final model architecture was designed by mimicking VGGNet
-<img src="./VGGNet.PNG"/> [source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture9.pdf)
+Final model architecture was designed by mimicking VGGNet.
+The architecture of VGGNet used developed for the Large Scale Visual Recognition Challenge is shown below
+![VGGNet][./VGGNet.PNG][source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture9.pdf)
+
+The detial architecture of model designed for this project is described in the table below:
 
 |Layers|Properties|
 |:-------|:-----------|
@@ -95,10 +98,17 @@ Final model architecture was designed by mimicking VGGNet
 |classifier| 43 class classifier|
 
 
-#### 3. Describe how you trained your model. 
-The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
+#### 3. Training. 
+To train the model, I used backpropagation to find the gradient of model parameters. Mini-batch stochastic gradient descent is used
+to find model parameters that yield the optimal perfomrance. batch size 128, learning rate of 0.001, and 10 epochs were used for 
+training. To avoid overfitting 50% drop out rate was used.
 
-To train the model, I used an ....
+```
+EPOCHS = 10
+BATCH_SIZE = 128
+rate = 0.001
+drop_out = 0.5
+```
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. 
 The results on the training, validation and test sets of my final model were:
@@ -106,20 +116,23 @@ The results on the training, validation and test sets of my final model were:
 * validation set accuracy of 97%
 * test set accuracy of 95.2%
 
-* How was the architecture adjusted and why was it adjusted? 
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
+VGGNet was chosen because it was relatively easy to implement while providing accurate predition. It showed a high accuracy in the 2014 
+Large Scale Visual Recognition Challenge. Therefore I believed that it would also work very well on the traffic sign application. 
+VGG was developed to classified images of 1000 different labels, therefore it has a very deep architecture. But traffic signs
+share many similarities among themselves, so the traffic sign application wouldn't require as many layers and as many filters in each 
+convolutional layer. My final model only included 6 convolutional layers. VGG nets were used, also because it required less parameters.
+"Stack of three 3x3 conv (stride 1) layers has same effective receptive field as one 7x7 conv layer." Three 3x3 conv layer has less parameters to train than a 7x7 conv layer. Beside efficiency, three conv layers also provide more non-linearities, which helps to improve model accuracy.
 
+Dropout was implemented to the model after finding training accuracy were consistantly around 5% higher than validation accuracy. I predicted that model was overfitted, so I added 50% dropout rate in the full connected layers. With dropout, validation accuracy was increased.
 
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-**1. LeNet**
+Two other architectures were designed and trained before VGGNet. They are LeNet and AlexNet. 
+Training accuracies of LeNet stop improving around 93% with augmented data, so I concluded that a model with deeper layers are needed. 
+AlexNet was selected to train. The first AlexNet(see table below) I trained yielded a similar accuracy as LeNet. To improve the accuracy, I decreased the filter size. Accuracy was not improved by doing so, therefore I tried increasing the filter depth instead. The third AlexNet yields a test accuracy around 95%, however it required to train more parameters than VGGNet. Thus VGGNet was chosen as final model instead.
 
-<img src="./LeNet.PNG"/>
+See model description below:
+
+**LeNet:**
+![LeNet][./LeNet.PNG][source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture9.pdf)
 
 **Architecture Summary**
 
@@ -137,9 +150,8 @@ If a well known architecture was chosen:
 |relu| Activation
 |classifier| 43 class classifier
 
----
-**2. AlexNet**
-<img src="./AlexNet.PNG"/>
+**AlexNet**
+![AlexNet][./AlexNet.PNG][source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture9.pdf)
 
 **Architecture Summary**
 
@@ -164,15 +176,12 @@ If a well known architecture was chosen:
 |classifier| 43 class classifier| 43 class classifier| 43 class classifier|
 
 ---
-
 ## Test a Model on New Images
 
 ### 1. Choose five German traffic signs found on the web and provide them in the report. 
 Here are five German traffic signs that I found on the web:
 
 ![new_image1][./new_images/constrt]![new_image2][./new_images/ROW]![new_image3][./new_images/speed_limit_60]![new_image4][./new_images/stop]![new_image5][./new_images/yield]
-
-The first image might be difficult to classify because ...
 
 ### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. 
 At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set 
@@ -181,17 +190,17 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Right-of-way at the next intersection | Stop sign   									| 
+| Road work | U-turn 										|
+| Speed limit (60km/h) | Yield											|
+| Stop | Bumpy Road					 				|
+| Yield | Slippery Road      							|
 
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
 
 ### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. 
-Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
+Provide the top 5 softmax probabilities for each image along with the sign type of each probability. 
 
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
