@@ -46,6 +46,7 @@ accuracy. However it is not a good model for prediction. Therefore training data
 of training dataset.
 
 Now the class distribution looked like this:
+
 ![balance](./examples/after_balancing.png)
 
 After obtaining even distributed training dataset. Data augmentation is performed. [Image Augmentation Library](https://github.com/aleju/imgaug) is used.
@@ -64,20 +65,23 @@ The final training dataset has the size of 164367.
 * Grayscale
 
 The next step is to convert RGB images to grayscale. In this way, the features were compressed while reserving important information.
-Belows are the sample images after converting to grayscale
+Belows are the sample images after converting to grayscale.
+
 ![balance](./examples/gray_scale.png)
 
 * Normalization 
 
 Finally, images were normalized, so that the minimum, and maximum values of each dataset were 0, and 255.
 Belows are them sample images after normalization.
+
 ![balance](./examples/normalization.png)
 
 
 #### 2. Final model architecture description
 
 Final model architecture was designed by mimicking VGGNet.
-The architecture of VGGNet used developed for the Large Scale Visual Recognition Challenge is shown below
+The architecture of VGGNet used developed for the Large Scale Visual Recognition Challenge is shown below:
+
 ![VGGNet](./VGGNet.PNG)[source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture9.pdf)
 
 The detial architecture of model designed for this project is described in the table below:
@@ -139,6 +143,7 @@ AlexNet was selected to train. The first AlexNet(see table below) I trained yiel
 See model description below:
 
 **LeNet:**
+
 ![LeNet](./LeNet.PNG)[source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture9.pdf)
 
 **Architecture Summary**
@@ -158,6 +163,7 @@ See model description below:
 |classifier| 43 class classifier
 
 **AlexNet**
+
 ![AlexNet](./AlexNet.PNG)[source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture9.pdf)
 
 **Architecture Summary**
@@ -188,7 +194,7 @@ See model description below:
 ### 1. Choose five German traffic signs found on the web and provide them in the report. 
 Here are five German traffic signs that I found on the web:
 
-![new_image1](./new_images/constrt.png)![new_image2](./new_images/ROW.png)![new_image3](./new_images/speed_limit_60.png)![new_image4](./new_images/stop.png)![new_image5](./new_images/yield.png)
+![new_image1](./new_images/constrt.jpg)![new_image2](./new_images/ROW.jpg)![new_image3](./new_images/speed_limit_60.jpg)![new_image4](./new_images/stop.jpg)![new_image5](./new_images/yield.jpg)
 
 ### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. 
 At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set 
