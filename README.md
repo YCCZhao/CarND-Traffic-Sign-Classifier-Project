@@ -16,5 +16,5 @@ This lab requires:
 * [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit)
 The lab environment can be created with CarND Term1 Starter Kit. Click [here](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) for the details.
 
-* [Image Augmentation Library](https://github.com/aleju/imgaug)
+* Install the [Image Augmentation Library](https://github.com/aleju/imgaug) 
 
