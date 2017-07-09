@@ -221,6 +221,8 @@ Here are the results of the prediction:
 
 The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%. 
 
+**The accuracy on the captured images is 100% while it was 95.5% on the testing set thus it seems the model is neither overfitting or underfitting. However the more new images are required to confirm this theory, especially harder to classified images are needed.**
+
 ### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. 
 The top 5 softmax probabilities for each image along with the sign type of each probability. 
 
